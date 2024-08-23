@@ -1,3 +1,1 @@
-## Sammi NextJS Tutorial
-
-# Source code
+## Nextjs - BLog app

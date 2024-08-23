@@ -46,7 +46,7 @@ const Navbar = ({ window }: Props) => {
     return (
         <Box height={'4rem'} display={'flex'}>
             <AppBar sx={{height: '4rem', backgroundColor: '#141414'}} component="nav">
-                <Toolbar>
+                <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -56,7 +56,7 @@ const Navbar = ({ window }: Props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Box sx={{ my: 2, alignItems: 'center', gap: '5px', flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
+                    <Box onClick={() => router.push('/')} sx={{ my: 2, alignItems: 'center', gap: '5px', display: { xs: 'none', sm: 'flex' }, cursor: 'pointer' }}>
                         <Image src={'/blogger.png'} alt="logo" width={30} height={30} />
                         <Typography variant="h6">Blog</Typography>
                     </Box>

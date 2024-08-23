@@ -14,6 +14,7 @@ const Footer = () => {
         alignItems: "center",
         backgroundColor: "#141414",
         color: "white",
+        borderTop: '1px solid gray'
       }}
     >
       <Typography>@ {format(new Date(), 'yyyy')} Blog. All rights reserved</Typography>
