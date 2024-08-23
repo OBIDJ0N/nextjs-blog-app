@@ -1,89 +1,94 @@
-import 'react-multi-carousel/lib/styles.css';
-import { Avatar, Box, Typography } from '@mui/material';
-import Carousel from 'react-multi-carousel';
-import Image from 'next/image';
-import { format } from 'date-fns';
-import { HeroProps } from './hero.props';
-import { calculateEstimatedTimeToRead } from 'src/helpers/time.format';
-import { useRouter } from 'next/router';
+import { Avatar, Box, Button, Typography } from "@mui/material";
+import Image from "next/image";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { format } from "date-fns";
+import { HeroProps } from "./hero.props";
+import { useRouter } from "next/router";
+import { calculateEstimatedTimeToRead } from "src/helpers/time.format";
 
 const Hero = ({ blogs }: HeroProps) => {
-	const router = useRouter();
+  const router = useRouter();
 
-	return (
-		<Box width={'100%'} height={'70vh'} sx={{ backgroundColor: 'red' }}>
-			<Carousel
-				responsive={{
-					mobile: {
-						breakpoint: { max: 4000, min: 0 },
-						items: 1,
-					},
-				}}
-			>
-				{blogs.map(item => (
-					<Box key={item.id} sx={{ cursor: 'pointer' }} onClick={() => router.push(`/blog/${item.slug}`)}>
-						<Box sx={{ position: 'relative', width: '100%', height: '70vh' }}>
-							<Image src={item.image.url} alt={item.title} fill style={{ objectFit: 'cover' }} />
-							<Box
-								sx={{
-									position: 'absolute',
-									top: 0,
-									left: 0,
-									right: 0,
-									bottom: 0,
-									width: '100%',
-									height: '100%',
-									backgroundColor: 'rgba(0, 0, 0, .6)',
-								}}
-							/>
-							<Box
-								width={{ xs: '100%', md: '70%' }}
-								position={'relative'}
-								color={'white'}
-								sx={{ top: '50%', transform: 'translateY(-50%)', paddingLeft: { xs: '10px', md: '50px' } }}
-								zIndex={999}
-							>
-								<Typography sx={{ fontSize: { xs: '30px', md: '50px' } }}>{item.title}</Typography>
-								<Typography color={'gray'} sx={{ fontSize: { xs: '20px', md: '25px' } }}>
-									{item.excerpt}
-								</Typography>
-								<Box sx={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-									<Avatar alt={item.author.name} src={item.author.avatar.url} />
-									<Box>
-										<Typography>{item.author.name}</Typography>
-										<Box>
-											{format(new Date(item.createdAt), 'dd MMM, yyyy')} &#x2022;{' '}
-											{calculateEstimatedTimeToRead(item.description.text)}min read
-										</Box>
-									</Box>
-								</Box>
-							</Box>
-						</Box>
-					</Box>
-				))}
-			</Carousel>
-		</Box>
-	);
+  return (
+    <Box width={"100%"} height={"70vh"}>
+      <Carousel
+        responsive={{
+          mobile: {
+            breakpoint: { max: 4000, min: 0 },
+            items: 1,
+          },
+        }}
+      >
+        {blogs.map((item) => (
+          <Box
+            key={item.id}
+            sx={{
+              position: "relative",
+              width: "100%",
+              height: "70vh",
+              cursor: "pointer",
+            }}
+          >
+            <Image
+              src={item.image.url}
+              alt={item.title}
+              fill
+              style={{ objectFit: "cover" }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, .6)",
+              }}
+            />
+            <Box
+              position={"absolute"}
+              color={"white"}
+              top={"50%"}
+              sx={{
+                transform: "translateY(-50%)",
+                paddingLeft: { xs: "10px", sm: "50px" },
+              }}
+            >
+              <Typography sx={{ fontSize: { xs: "30px", md: "50px" } }}>
+                {item.title}
+              </Typography>
+              <Typography
+                color={"gray"}
+                sx={{ fontSize: { xs: "20px", md: "25px" } }}
+              >
+                {item.excerpt}
+              </Typography>
+              <Box
+                display={"flex"}
+                alignItems={"center"}
+                gap={"10px"}
+                mt={"20px"}
+              >
+                <Avatar src={item.author.avatar.url} alt={item.author.name} />
+                <Box>
+                  <Typography>{item.author.name}</Typography>
+                  <Typography>
+                    {format(new Date(item.createdAt), "dd MMM, yyyy")} ·{" "}
+                    {calculateEstimatedTimeToRead(item.description.text)} min
+                    read
+                  </Typography>
+                </Box>
+              </Box>
+              <Button variant="contained" sx={{mt: '20px', bgcolor: 'darkblue', textTransform: 'none', color: 'white'}} onClick={() => router.push(`/blog/${item.slug}`)}>See more</Button>
+            </Box>
+          </Box>
+        ))}
+      </Carousel>
+    </Box>
+  );
 };
-export default Hero;
 
-const data = [
-	{
-		image: 'https://media.graphassets.com/MxJZhmooRRuudoErkQ38',
-		title: 'Technical SEO with Hygraph',
-		exerpt: 'Get started with your SEO implementation when using a Headless CMS',
-		author: {
-			name: 'Samar Badriddinov',
-			image: 'https://media.graphassets.com/DkfNqQNGRz2F4UFntKQx',
-		},
-	},
-	{
-		image: 'https://media.graphassets.com/bh3K2NNtTHCN260Xfq9h',
-		title: 'Union Types and Sortable Relations with Hygraph',
-		exerpt: 'Learn more about Polymorphic Relations and Sortable Relations with Hygraph',
-		author: {
-			name: 'Samar Badriddinov',
-			image: 'https://media.graphassets.com/DkfNqQNGRz2F4UFntKQx',
-		},
-	},
-];
+export default Hero;

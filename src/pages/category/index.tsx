@@ -8,7 +8,7 @@ import SEO from 'src/layout/seo/seo';
 import { BlogsService } from 'src/services/blog.service';
 
 const CategoryPage = ({ categories }: CategoryPageProps) => {
-	const rotuer = useRouter();
+	const router = useRouter();
 
 	return (
 		<SEO metaTitle='All Categories'>
@@ -33,7 +33,7 @@ const CategoryPage = ({ categories }: CategoryPageProps) => {
 					</Typography>
 					<ButtonGroup variant='contained' aria-label='outlined primary button group'>
 						{categories.map(item => (
-							<Button onClick={() => rotuer.push(`/category/${item.slug}`)} key={item.slug}>
+							<Button onClick={() => router.push(`/category/${item.slug}`)} key={item.slug}>
 								# {item.label}
 							</Button>
 						))}

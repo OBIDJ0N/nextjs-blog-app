@@ -41,7 +41,7 @@ export const BlogsService = {
 	async getLatestBlog() {
 		const query = gql`
 			query GetLatestBlog {
-				blogs(last: 2) {
+				blogs(last: 1) {
 					id
 					slug
 					title
@@ -114,7 +114,7 @@ export const BlogsService = {
 		return result.blog;
 	},
 
-	async getDetaieldCateogriesBlog(slug: string) {
+	async getDetailedCategoriesBlog(slug: string) {
 		const query = gql`
 			query getCategoriesBlog($slug: String!) {
 				blogs(where: { category: { slug: $slug } }) {

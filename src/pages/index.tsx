@@ -12,7 +12,7 @@ const IndexPage = ({ blogs, latestBlogs, categories }: HomePageProps) => {
 	return (
 		<SEO>
 			<Layout>
-				<Hero blogs={blogs.slice(0, 3)} />
+				<Hero blogs={blogs.slice(0, 2)} />
 				<Box sx={{ display: 'flex', gap: '20px', flexDirection: { xs: 'column', md: 'row' }, padding: '20px' }}>
 					<Sidebar latestBlogs={latestBlogs} categories={categories} />
 					<Content blogs={blogs} />
